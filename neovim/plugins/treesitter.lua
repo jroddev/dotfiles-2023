@@ -1,0 +1,27 @@
+return {
+  "nvim-treesitter/nvim-treesitter",
+  opts = {
+    ensure_installed = {
+      "vim",
+      "lua",
+      "rust",
+      "toml",
+      "bash",
+      "python",
+      "cpp",
+      "dockerfile",
+      "hcl",
+      "terraform",
+      "yaml",
+      "wgsl_bevy",
+      "html",
+      "css",
+      "javascript",
+      "typescript",
+      "tsx",
+      "json",
+      "c",
+      "cpp",
+    },
+  },
+}

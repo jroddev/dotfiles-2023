@@ -1,0 +1,60 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt extendedglob nomatch notify
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/jarrod/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+
+# Use vi mode
+bindkey -v
+export KEYTIMEOUT=1
+# support ctrl-r history in vi-mode
+bindkey "^R" history-incremental-search-backward
+
+export EDITOR=nvim
+[ -f "$HOME/.zsh_preconfigure" ] && source "$HOME/.zsh_preconfigure"
+[ -f "$HOME/.zsh_alias" ] && source "$HOME/.zsh_alias"
+
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# Always attach or create a tmux session in alacritty
+# Do not auto tmux in IntelliJ, VS Code, etc
+if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ "$TERM" = "alacritty" ]; then
+  # Create session 'main' or attach to 'main' if already exists.
+  tmux new-session -A -s main
+fi
+
+
+if [[ "$OSTYPE" =~ ^linux ]]; then
+
+   # Save SSH Password in KWallet
+   if which ksshaskpass >/dev/null 2>&1; then
+     eval $(ssh-agent) >/dev/null
+     # If you key is called id_rsa then this will work automatically
+     # If you have a different name then export REMEMBER_SSH_KEYS
+     # env var with the path of the key you want e.g.
+     # export REMEMBER_SSH_KEYS="$HOME/.ssh/jroddev_titan_id_rsa"
+     SSH_ASKPASS=ksshaskpass ssh-add ${REMEMBER_SSH_KEYS} < /dev/null
+     SSH_ASKPASS_REQUIRE=prefer
+   fi
+fi
+
+
+[ -f "$HOME/.cargo/env" ] && sh "$HOME/.cargo/env"
+
+if (( $+commands[starship] )); then
+  # https://starship.rs prompt
+  eval "$(starship init zsh)"
+else
+  echo "WARNING: Starship prompt not installed"
+fi
+
