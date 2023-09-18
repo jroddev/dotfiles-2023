@@ -30,7 +30,7 @@ ln -s $(pwd)/alacritty $HOME/.config/
 
 ```
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
-ln -s $(pwd)/neovim/ $HOME/.config/nvim/lua/custom/
+ln -s $(pwd)/neovim/ $HOME/.config/nvim/lua/custom
 nvim +MasonInstallAll +qall
 # other install command
 # TSUpdate ?? may not be needed
