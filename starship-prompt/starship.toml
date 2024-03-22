@@ -1,0 +1,33 @@
+format = """
+$character\
+"""
+
+right_format = """
+$status\
+$cmd_duration\
+$username\
+$hostname
+"""
+
+add_newline = false
+
+[hostname]
+# ssh_only = false
+format = "[  $ssh_symbol$hostname ]($style)"
+
+[username]
+# show_always = true
+format = "[  $user ]($style)"
+
+
+[status]
+disabled = false
+style = "bold bg:red"
+format = "[ $status ]($style)"
+
+[cmd_duration]
+min_time = 0
+format = "[  $duration ]($style)"
+# min_time_to_notify = 60000
+# show_notifications = true
+

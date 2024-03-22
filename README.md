@@ -35,3 +35,10 @@ git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 ln -s $(pwd)/neovim/ $HOME/.config/nvim/lua/custom
 nvim +MasonInstallAll +qall
 ```
+
+## Starship Prompt
+- Install the [Starship Prompt](https://starship.rs/)
+```
+ln -s $(pwd)/starship-prompt/starship.toml $HOME/.config/starship.toml
+
+```
